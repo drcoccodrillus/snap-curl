@@ -1,0 +1,24 @@
+name: curl-snap
+base: core22
+version: '7.81.0'
+summary: Transfer data from or to a server using URLs
+description: |
+  curl is a tool for transferring data from or to a server using URLs.
+  It supports these protocols: DICT, FILE, FTP, FTPS, GOPHER, GOPHERS, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, MQTT, POP3, POP3S, RTMP, RTMPS, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET, TFTP, WS and WSS.
+
+#grade: devel #This is for development only.
+#confinement: devmode #This is for development only. Unconfined snap environment. For production, use strict.
+grade: stable #This is for releasing in the stable channel.
+confinement: strict #This is for production only.
+
+apps:
+  curl:
+    command: usr/bin/curl
+    plugs: [home, network]
+
+parts:
+  # Install curl
+  curl:
+    plugin: nil
+    stage-packages:
+      - curl
